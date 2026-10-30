@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>홈페이지 관리 — 최희</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/admin.css">
+</head>
+<body>
+
+<div class="topline"></div>
+<header class="adm-top">
+  <a class="adm-brand" href="/admin"><span class="mark">崔</span><span><b>최희 홈페이지</b><small>관리 화면</small></span></a>
+  <div class="adm-top-actions">
+    <a class="btn btn-ghost-dark btn-sm" href="/" target="_blank" rel="noopener">홈페이지 보기 ↗</a>
+    <button class="btn btn-ghost-dark btn-sm" id="logout-btn" type="button" hidden>나가기</button>
+  </div>
+</header>
+
+<!-- 로그인 -->
+<main class="gate" id="gate">
+  <form class="gate-card" id="login-form" novalidate>
+    <p class="eyebrow">ADMIN</p>
+    <h1>관리자 확인</h1>
+    <p class="muted">작가와 관리자만 쓰는 화면입니다. Cloudflare에 등록한 관리자 비밀번호(ADMIN_KEY)를 넣어 주십시오.</p>
+    <label class="fld-label" for="admin-key">관리자 비밀번호</label>
+    <input class="inp" type="password" id="admin-key" autocomplete="current-password" required>
+    <button class="btn btn-forest btn-block" type="submit" id="login-btn">들어가기</button>
+    <p class="msg" id="login-msg" role="alert" hidden></p>
+    <p class="muted small" id="health-msg"></p>
+  </form>
+</main>
+
+<!-- 관리 화면 -->
+<div class="app" id="app" hidden>
+  <nav class="side" id="side" aria-label="관리 메뉴">
+    <a href="#/overview" data-route="overview">한눈에 보기</a>
+    <p class="side-h">홈페이지 내용</p>
+    <a href="#/page/home" data-route="page/home">홈</a>
+    <a href="#/page/about" data-route="page/about">작가 소개</a>
+    <a href="#/page/books" data-route="page/books">저서 페이지 문구</a>
+    <a href="#/page/board" data-route="page/board">독자 게시판 문구</a>
+    <a href="#/page/contact" data-route="page/contact">문의·제안 문구</a>
+    <a href="#/page/common" data-route="page/common">머리글·바닥글</a>
+    <p class="side-h">목록</p>
+    <a href="#/books" data-route="books">저서 목록</a>
+    <a href="#/timeline" data-route="timeline">이력 (연보)</a>
+    <p class="side-h">소통</p>
+    <a href="#/inquiries" data-route="inquiries">문의함 <span class="count-badge" id="inq-badge" hidden></span></a>
+    <a href="#/posts" data-route="posts">독자 게시판 글</a>
+    <p class="side-h">보관</p>
+    <a href="#/media" data-route="media">사진 보관함</a>
+    <a href="#/backup" data-route="backup">백업·복원</a>
+  </nav>
+  <main class="main" id="view" tabindex="-1"></main>
+</div>
+
+<!-- 저장 막대 -->
+<div class="savebar" id="savebar" hidden>
+  <span id="save-count">변경 0개</span>
+  <div class="savebar-actions">
+    <button class="btn btn-line-light btn-sm" id="discard-btn" type="button">변경 취소</button>
+    <button class="btn btn-gold btn-sm" id="save-btn" type="button">저장하고 홈페이지에 반영</button>
+  </div>
+</div>
+
+<!-- 사진 맞추기 -->
+<dialog class="crop" id="crop">
+  <form method="dialog" class="crop-in">
+    <h2>사진 맞추기</h2>
+    <p class="muted" id="crop-guide"></p>
+    <div class="crop-stage"><canvas id="crop-canvas" width="560" height="420"></canvas></div>
+    <label class="crop-range" id="crop-range-wrap">
+      <span>보이는 위치 조정 <small class="muted">(사진 위를 끌어도 됩니다)</small></span>
+      <input type="range" id="crop-pos" min="0" max="100" value="50">
+    </label>
+    <label class="chk" id="crop-free-wrap" hidden><input type="checkbox" id="crop-free"> 자르지 않고 원본 비율 그대로 쓰기</label>
+    <p class="muted small" id="crop-info"></p>
+    <div class="crop-actions">
+      <button class="btn btn-line btn-sm" value="cancel" id="crop-cancel">취소</button>
+      <button class="btn btn-forest btn-sm" id="crop-ok" type="button">이 사진으로 바꾸기</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<input type="file" id="file-pick" accept="image/jpeg,image/png,image/webp,image/*" hidden>
+<input type="file" id="backup-pick" accept="application/json,.json" hidden>
+
+<script src="/assets/js/admin.js"></script>
+</body>
+</html>

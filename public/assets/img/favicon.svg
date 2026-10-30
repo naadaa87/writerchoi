@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect x="2" y="2" width="60" height="60" rx="10" fill="#16302A"/>
+  <rect x="6.5" y="6.5" width="51" height="51" rx="7" fill="none" stroke="#C9A15C" stroke-width="1.6"/>
+  <text x="32" y="43" font-family="'Noto Serif KR','Batang',serif" font-size="30" font-weight="700" fill="#F4EFE6" text-anchor="middle">崔</text>
+  <circle cx="47" cy="18" r="3.2" fill="#B94B3F"/>
+</svg>
