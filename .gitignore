@@ -1,0 +1,11 @@
+# 운영체제
+.DS_Store
+Thumbs.db
+
+# 로컬 도구
+node_modules/
+.wrangler/
+.dev.vars
+
+# 관리 화면에서 받은 백업 파일 (게시글 등이 들어 있으므로 저장소에 올리지 않습니다)
+choihee-backup-*.json
