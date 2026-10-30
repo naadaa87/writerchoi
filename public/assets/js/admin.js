@@ -255,18 +255,8 @@
     ]);
     const b = $('#inq-badge'); b.hidden = !o.inquiriesNew; b.textContent = o.inquiriesNew;
 
-    const reminders = [];
-    if (Date.now() > new Date('2026-10-01T00:00:00+09:00').getTime() && !('t:home.notice.label' in state.content)) {
-      reminders.push(h('div', { class: 'notice-box warn' },
-        h('p', null, h('b', { text: '확인해 주십시오 — ' }), '홈 화면과 저서 페이지에 소설집 『달그리안』이 아직 "2026년 9월 출간 예정"으로 나옵니다.'),
-        h('p', null, '이미 출간되었다면 ', h('a', { href: '#/page/home' }, '홈'), '의 "신간 안내", ',
-          h('a', { href: '#/page/books' }, '저서 페이지 문구'), '의 "다음 이야기"를 고치고, ',
-          h('a', { href: '#/books' }, '저서 목록'), '에 새 책으로 더해 주십시오.')));
-    }
-
     view.replaceChildren(
       head('한눈에 보기', '홈페이지의 문구와 사진, 저서, 이력을 이곳에서 직접 고칠 수 있습니다.'),
-      ...reminders,
       h('div', { class: 'stats' },
         h('a', { class: 'stat' + (o.inquiriesNew ? ' hot' : ''), href: '#/inquiries' }, h('b', { text: o.inquiriesNew }), h('span', { text: '새 문의' })),
         h('a', { class: 'stat', href: '#/inquiries' }, h('b', { text: o.inquiries }), h('span', { text: '전체 문의' })),
@@ -625,7 +615,7 @@
     });
     const reset = h('button', { class: 'link', type: 'button' }, '처음 목록으로 되돌리기');
     reset.addEventListener('click', () => {
-      if (!confirm('저서 목록을 처음 만들었을 때의 세 권으로 되돌릴까요? (저장해야 반영됩니다)')) return;
+      if (!confirm('저서 목록을 홈페이지에 처음 들어 있던 상태로 되돌릴까요? (저장해야 반영됩니다)')) return;
       draft.splice(0, draft.length, ...JSON.parse(JSON.stringify(state.defaults.books)));
       opened.clear(); commitList('books', draft); render();
     });

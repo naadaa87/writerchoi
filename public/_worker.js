@@ -651,7 +651,7 @@ function esc(s) {
 
 /** 줄바꿈은 <br>로, 나머지는 모두 이스케이프 */
 function textHtml(s) {
-  return esc(s).replace(/\r?\n/g, '<br>');
+  return esc(s).replace(/\r?\n/g, ' <br>');
 }
 
 /** 이미지·링크 주소 검사. 통과하지 못하면 빈 문자열 */
